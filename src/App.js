@@ -10,6 +10,9 @@ import { Signup } from "./pages/Signup";
 import { routes } from "./routes";
 import { darkTheme, GlobalStyled, lightTheme } from "./styles/style";
 import { client } from "./apollo";
+import { Layout } from "./components/Layout";
+import { Search } from "./pages/Search";
+import { EditProfile } from "./pages/EditProfile";
 
 function App() {
   const loggedIn = useReactiveVar(loggedInVar);
@@ -24,12 +27,52 @@ function App() {
             <Routes>
               <Route
                 path={routes.home}
-                element={loggedIn ? <Home /> : <Login />}
+                element={
+                  loggedIn ? (
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  ) : (
+                    <Login />
+                  )
+                }
               />
               <Route
                 path={routes.signup}
-                element={loggedIn ? <Home /> : <Signup />}
+                element={
+                  loggedIn ? (
+                    <Layout>
+                      <Home />
+                    </Layout>
+                  ) : (
+                    <Signup />
+                  )
+                }
               />
+
+              {loggedIn ? (
+                <>
+                  <Route
+                    path={routes.search}
+                    element={
+                      <Layout>
+                        <Search />
+                      </Layout>
+                    }
+                  />
+                  <Route
+                    path={routes.editProfile}
+                    element={
+                      <Layout>
+                        <EditProfile />
+                      </Layout>
+                    }
+                  />
+                </>
+              ) : (
+                <Route path={routes.home} element={<Login />} />
+              )}
+
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </Router>

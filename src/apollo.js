@@ -1,4 +1,6 @@
 import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
+import { routes } from "./routes";
 
 const TOKEN = "authorization";
 const DARK_MODE = "darkMode";
@@ -9,9 +11,11 @@ export const loginUser = (token) => {
   localStorage.setItem(TOKEN, token);
   loggedInVar(true);
 };
+
 export const logoutUser = () => {
   localStorage.removeItem(TOKEN);
   loggedInVar(false);
+  window.location.reload();
 };
 
 export const darkModeVar = makeVar(Boolean(localStorage.getItem(DARK_MODE)));

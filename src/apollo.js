@@ -5,9 +5,7 @@ import {
   makeVar,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-
-const TOKEN = "authorization";
-const DARK_MODE = "darkMode";
+import { DARK_MODE, TOKEN } from "./constants/constants";
 
 export const loggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
 

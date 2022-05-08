@@ -46,7 +46,6 @@ export const Home = () => {
     //   lastId: 4,
     // },
   });
-  console.log(data);
 
   return (
     <Conatiner>

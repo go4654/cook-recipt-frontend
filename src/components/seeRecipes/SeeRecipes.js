@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { NO_IMG_URL } from "../../constants/constants";
 import { routes } from "../../routes";
 
 const Con = styled.div`
@@ -35,9 +36,7 @@ export const SeeRecipes = ({ recipe }) => {
             <Bg
               style={{
                 background: `url(${
-                  recipe?.file
-                    ? recipe?.file
-                    : "https://media.dongwon.com/assets/_temp/post/200603/01.jpg"
+                  recipe?.file ? recipe?.file : NO_IMG_URL
                 }) no-repeat center / cover`,
               }}
             />

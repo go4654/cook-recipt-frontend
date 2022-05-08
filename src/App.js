@@ -14,6 +14,7 @@ import { Layout } from "./components/Layout";
 import { Search } from "./pages/Search";
 import { EditProfile } from "./pages/EditProfile";
 import { SeeCook } from "./pages/SeeCook";
+import { Hashtag } from "./pages/Hashtag";
 
 function App() {
   const loggedIn = useReactiveVar(loggedInVar);
@@ -74,6 +75,14 @@ function App() {
                     element={
                       <Layout>
                         <SeeCook />
+                      </Layout>
+                    }
+                  />
+                  <Route
+                    path={routes.hashtag}
+                    element={
+                      <Layout>
+                        <Hashtag />
                       </Layout>
                     }
                   />

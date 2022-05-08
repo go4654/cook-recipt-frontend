@@ -2,17 +2,18 @@
 
 # User
 
-- [ ] Router
-- [ ] apollo setup
-- [ ] login
-- [ ] createAccount
-- [ ] authentication
+- [x] Router
+- [x] apollo setup
+- [x] login
+- [x] createAccount
+- [x] authentication
 - [ ] EditProfile
 
 # Recipe
 
-- [ ] Home
-- [ ] SeeRecipe
+- [x] Home
+- [x] SeeRecipes
+- [ ] SeeCook
 - [ ] CreateRecipe
 - [ ] EditRecipe
 - [ ] DeleteRecipe
@@ -21,3 +22,7 @@
 # Hashtag
 
 - [ ] SeeHashtags
+
+# TODO
+
+- [ ] 404 Page

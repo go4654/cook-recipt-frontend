@@ -13,6 +13,7 @@ import { client } from "./apollo";
 import { Layout } from "./components/Layout";
 import { Search } from "./pages/Search";
 import { EditProfile } from "./pages/EditProfile";
+import { SeeCook } from "./pages/SeeCook";
 
 function App() {
   const loggedIn = useReactiveVar(loggedInVar);
@@ -65,6 +66,14 @@ function App() {
                     element={
                       <Layout>
                         <EditProfile />
+                      </Layout>
+                    }
+                  />
+                  <Route
+                    path={routes.detail}
+                    element={
+                      <Layout>
+                        <SeeCook />
                       </Layout>
                     }
                   />

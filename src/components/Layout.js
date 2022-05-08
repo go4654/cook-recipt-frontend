@@ -7,8 +7,12 @@ const Main = styled.main`
 `;
 
 const Container = styled.div`
-  padding: 80px 300px;
+  max-width: 1200px;
+  width: 100%;
+  padding: 80px 0px;
+  margin: 0 auto;
   @media screen and (max-width: 430px) {
+    width: 100%;
     padding: 50px 20px;
   }
 `;

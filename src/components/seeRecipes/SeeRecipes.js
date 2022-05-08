@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { routes } from "../../routes";
 
 const Con = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
@@ -7,7 +9,10 @@ const Con = styled.div`
 `;
 
 const Bg = styled.div`
-  height: 200px;
+  height: 400px;
+  @media screen and (max-width: 430px) {
+    height: 200px;
+  }
 `;
 
 const CookName = styled.div`
@@ -26,17 +31,19 @@ export const SeeRecipes = ({ recipe }) => {
     <>
       {recipe.map((recipe) => (
         <Con key={recipe.id}>
-          <Bg
-            style={{
-              background: `url(${
-                recipe?.file
-                  ? recipe?.file
-                  : "https://media.dongwon.com/assets/_temp/post/200603/01.jpg"
-              }) no-repeat center / cover`,
-            }}
-          />
-          <CookName>{recipe.cookName}</CookName>
-          <Username>{recipe.user.nickName}</Username>
+          <Link to={`/show-recipe/${recipe.id}`}>
+            <Bg
+              style={{
+                background: `url(${
+                  recipe?.file
+                    ? recipe?.file
+                    : "https://media.dongwon.com/assets/_temp/post/200603/01.jpg"
+                }) no-repeat center / cover`,
+              }}
+            />
+            <CookName>{recipe.cookName}</CookName>
+            <Username>{recipe.user.nickName}</Username>
+          </Link>
         </Con>
       ))}
     </>

@@ -7,17 +7,17 @@
 - [x] login
 - [x] createAccount
 - [x] authentication
-- [ ] EditProfile
+- [x] EditProfile
 
 # Recipe
 
 - [x] Home
 - [x] SeeRecipes
 - [x] SeeCook
+- [x] SearchRecipe
 - [ ] CreateRecipe
 - [ ] EditRecipe
 - [ ] DeleteRecipe
-- [ ] SearchRecipe
 
 # Hashtag
 

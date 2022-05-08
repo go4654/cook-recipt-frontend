@@ -8,7 +8,7 @@ export const Input = styled.input`
   margin-bottom: 10px;
   &::placeholder {
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 500;
     opacity: 0.6;
     letter-spacing: -1px;
   }

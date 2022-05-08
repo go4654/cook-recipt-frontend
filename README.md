@@ -29,3 +29,5 @@
 - [ ] Infinite Scroll
 - [ ] Pagiation
 - [ ] 토큰 만료기간
+- [ ] 해시태그 인풋 따로 제작
+- [ ] 레시피 제작후 home 캐시처리

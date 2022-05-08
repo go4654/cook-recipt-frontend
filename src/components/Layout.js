@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { CreateBtn } from "./CreateBtn";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -22,6 +23,7 @@ export const Layout = ({ children }) => {
     <Main>
       <Header />
       <Container>{children}</Container>
+      <CreateBtn />
       <Footer />
     </Main>
   );

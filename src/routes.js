@@ -5,4 +5,5 @@ export const routes = {
   detail: "/show-recipe/:id",
   search: "/search",
   hashtag: "/hashtag/:hashtag/*",
+  createRecipe: "/createRecipe",
 };

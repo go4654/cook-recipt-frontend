@@ -15,6 +15,7 @@ import { Search } from "./pages/Search";
 import { EditProfile } from "./pages/EditProfile";
 import { SeeCook } from "./pages/SeeCook";
 import { Hashtag } from "./pages/Hashtag";
+import { CreateRecipe } from "./pages/CreateRecipe";
 
 function App() {
   const loggedIn = useReactiveVar(loggedInVar);
@@ -83,6 +84,14 @@ function App() {
                     element={
                       <Layout>
                         <Hashtag />
+                      </Layout>
+                    }
+                  />
+                  <Route
+                    path={routes.createRecipe}
+                    element={
+                      <Layout>
+                        <CreateRecipe />
                       </Layout>
                     }
                   />

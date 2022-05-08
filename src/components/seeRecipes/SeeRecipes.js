@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { NO_IMG_URL } from "../../constants/constants";
-import { routes } from "../../routes";
 
 const Con = styled.div`
   border-bottom: 1px solid ${(props) => props.theme.borderColor};

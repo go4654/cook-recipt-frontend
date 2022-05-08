@@ -2,6 +2,7 @@ import { gql, useQuery } from "@apollo/client";
 import { Fragment } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { Container } from "../components/Container";
 import { Loading } from "../components/Loading";
 import { NO_IMG_URL } from "../constants/constants";
 import { HASHTAG_FRAGMENT, USER_FRAGMENT } from "../fragment";
@@ -34,15 +35,7 @@ const Title = styled.h3`
   margin-bottom: 30px;
 `;
 
-const CookWrap = styled.div`
-  max-width: 700px;
-  width: 100%;
-  margin: 0 auto;
-`;
-
-const Bg = styled.div`
-  height: 500px;
-`;
+const Bg = styled.img``;
 
 const ConWrap = styled.div`
   margin-top: 50px;
@@ -86,23 +79,15 @@ export const SeeCook = () => {
     },
   });
 
-  console.log(data);
-
   return (
     <div>
       {loading ? (
         <Loading />
       ) : (
         data?.seeCook && (
-          <CookWrap>
+          <Container>
             <Title>{data?.seeCook?.cookName}</Title>
-            <Bg
-              style={{
-                background: `url(${
-                  data?.seeCook?.file ? data?.seeCook?.file : NO_IMG_URL
-                }) no-repeat center / cover`,
-              }}
-            />
+            <Bg src={data?.seeCook?.file ? data?.seeCook?.file : NO_IMG_URL} />
 
             <ConWrap>
               <RecipeTitle>{data?.seeCook?.cookName}</RecipeTitle>
@@ -110,7 +95,7 @@ export const SeeCook = () => {
                 {data?.seeCook?.payload.split(" ").map((word, index) =>
                   /#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/.test(word) ? (
                     <Fragment key={index}>
-                      <Link to={`/hashtag/${word}`}>{word}</Link>{" "}
+                      <Link to={`/hashtag/${word.slice(1)}`}>{word}</Link>{" "}
                     </Fragment>
                   ) : (
                     <Fragment key={index}>{word} </Fragment>
@@ -125,7 +110,7 @@ export const SeeCook = () => {
                 </a>
               </YoutubeLink>
             </ConWrap>
-          </CookWrap>
+          </Container>
         )
       )}
     </div>

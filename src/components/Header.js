@@ -57,7 +57,7 @@ export const Header = () => {
 
   const handleScroll = () => {
     const sct = window.pageYOffset;
-    if (sct >= 300) {
+    if (sct >= 400) {
       setFix("fixed");
     } else {
       setFix("static");

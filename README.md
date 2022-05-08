@@ -13,7 +13,7 @@
 
 - [x] Home
 - [x] SeeRecipes
-- [ ] SeeCook
+- [x] SeeCook
 - [ ] CreateRecipe
 - [ ] EditRecipe
 - [ ] DeleteRecipe
@@ -27,3 +27,4 @@
 
 - [ ] 404 Page
 - [ ] Infiniti Scroll
+- [ ] 토큰 만료기간

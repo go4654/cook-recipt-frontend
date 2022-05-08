@@ -6,6 +6,7 @@ export const lightTheme = {
   fontColor: "#1d1d1d",
   borderColor: "#dbdbdb",
   mainColor: "orange",
+  inputBg: "#f1f1f1",
 };
 
 export const darkTheme = {
@@ -13,6 +14,7 @@ export const darkTheme = {
   fontColor: "#fff",
   borderColor: "#808080",
   mainColor: "orange",
+  inputBg: "#555",
 };
 
 export const GlobalStyled = createGlobalStyle`

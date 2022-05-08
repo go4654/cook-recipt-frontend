@@ -51,6 +51,7 @@ const RecipeTitle = styled.h4`
 const Payload = styled.div`
   margin-top: 20px;
   font-size: 18px;
+  line-height: 1.6rem;
   a {
     color: royalblue;
     &:hover {

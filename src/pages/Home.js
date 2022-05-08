@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Loading } from "../components/Loading";
 import { SeeRecipes } from "../components/seeRecipes/SeeRecipes";
 import { HASHTAG_FRAGMENT, USER_FRAGMENT } from "../fragment";
+import { Container } from "../components/Container";
 
 const SEE_RECIPES_MUTATION = gql`
   query seeRecipes($lastId: Int) {
@@ -23,8 +24,6 @@ const SEE_RECIPES_MUTATION = gql`
   ${USER_FRAGMENT}
   ${HASHTAG_FRAGMENT}
 `;
-
-const Conatiner = styled.div``;
 
 const Title = styled.h3`
   font-size: 30px;
@@ -48,11 +47,11 @@ export const Home = () => {
   });
 
   return (
-    <Conatiner>
+    <Container>
       <Title>레시피를 확인해 보아요!</Title>
       <ConWrap>
         {loading ? <Loading /> : <SeeRecipes recipe={data?.seeRecipes} />}
       </ConWrap>
-    </Conatiner>
+    </Container>
   );
 };

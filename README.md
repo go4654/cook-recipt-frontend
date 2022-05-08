@@ -21,10 +21,11 @@
 
 # Hashtag
 
-- [ ] SeeHashtags
+- [x] SeeHashtags
 
 # TODO
 
 - [ ] 404 Page
-- [ ] Infiniti Scroll
+- [ ] Infinite Scroll
+- [ ] Pagiation
 - [ ] 토큰 만료기간

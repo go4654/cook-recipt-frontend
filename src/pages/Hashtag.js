@@ -29,6 +29,9 @@ const TitleWrap = styled.div`
   align-items: center;
   padding-bottom: 40px;
   border-bottom: 1px solid ${(props) => props.theme.borderColor};
+  @media screen and (max-width: 450px) {
+    flex-direction: column;
+  }
 `;
 
 const TitleBg = styled.div`
@@ -37,6 +40,10 @@ const TitleBg = styled.div`
   background-color: lightgray;
   border-radius: 50%;
   margin-right: 50px;
+  @media screen and (max-width: 450px) {
+    margin-right: 0px;
+    margin-bottom: 20px;
+  }
 `;
 
 const ConWrap = styled.div`
@@ -45,6 +52,11 @@ const ConWrap = styled.div`
   grid-template-columns: repeat(3, 1fr);
   column-gap: 30px;
   row-gap: 40px;
+  @media screen and (max-width: 450px) {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 20px;
+    row-gap: 40px;
+  }
 `;
 
 const Con = styled.div``;
@@ -56,6 +68,7 @@ const Bg = styled.div`
 
 const Text = styled.p`
   margin-top: 10px;
+  font-weight: 500;
 `;
 
 export const Hashtag = () => {

@@ -1,5 +1,7 @@
+import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { CreateBtn } from "./CreateBtn";
+import { EditBtn } from "./EditBtn";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 
@@ -19,11 +21,14 @@ const Container = styled.div`
 `;
 
 export const Layout = ({ children }) => {
+  const { pathname } = useLocation();
+  const urlName = pathname.split("/")[1];
+
   return (
     <Main>
       <Header />
       <Container>{children}</Container>
-      <CreateBtn />
+      {urlName === "show-recipe" ? <EditBtn /> : <CreateBtn />}
       <Footer />
     </Main>
   );

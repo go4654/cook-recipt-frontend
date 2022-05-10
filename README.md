@@ -15,7 +15,7 @@
 - [x] SeeRecipes
 - [x] SeeCook
 - [x] SearchRecipe
-- [ ] CreateRecipe
+- [ ] CreateRecipe -> Hashtag change
 - [ ] EditRecipe
 - [ ] DeleteRecipe
 
@@ -26,7 +26,7 @@
 # TODO
 
 - [ ] 404 Page
-- [ ] Infinite Scroll
+- [x] Infinite Scroll
 - [ ] Pagiation
 - [ ] 토큰 만료기간
 - [ ] 해시태그 인풋 따로 제작

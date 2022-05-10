@@ -2,8 +2,9 @@ import { gql, useQuery } from "@apollo/client";
 import styled from "styled-components";
 import { Loading } from "../components/Loading";
 import { SeeRecipes } from "../components/seeRecipes/SeeRecipes";
-import { HASHTAG_FRAGMENT, USER_FRAGMENT } from "../fragment";
+import { USER_FRAGMENT } from "../fragment";
 import { Container } from "../components/Container";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 const SEE_RECIPES_MUTATION = gql`
   query seeRecipes($lastId: Int) {
@@ -16,13 +17,9 @@ const SEE_RECIPES_MUTATION = gql`
       payload
       videoLink
       file
-      hashtags {
-        ...HashtagFragment
-      }
     }
   }
   ${USER_FRAGMENT}
-  ${HASHTAG_FRAGMENT}
 `;
 
 const Title = styled.h3`
@@ -40,18 +37,38 @@ const ConWrap = styled.div`
 `;
 
 export const Home = () => {
-  const { data, loading } = useQuery(SEE_RECIPES_MUTATION, {
-    // variables: {
-    //   lastId: 4,
-    // },
-  });
+  const { data, fetchMore, loading } = useQuery(SEE_RECIPES_MUTATION);
 
   return (
     <Container>
       <Title>레시피를 확인해 보아요!</Title>
-      <ConWrap>
-        {loading ? <Loading /> : <SeeRecipes recipe={data?.seeRecipes} />}
-      </ConWrap>
+      <>
+        {loading ? (
+          <Loading />
+        ) : (
+          <>
+            {data?.seeRecipes ? (
+              <InfiniteScroll
+                pageStart={0}
+                dataLength={data?.seeRecipes?.length}
+                next={() =>
+                  fetchMore({
+                    variables: {
+                      lastId: data?.seeRecipes?.length,
+                    },
+                  })
+                }
+                hasMore={true}
+                loader={loading ? <Loading /> : null}
+              >
+                <ConWrap>
+                  <SeeRecipes recipe={data?.seeRecipes} />
+                </ConWrap>
+              </InfiniteScroll>
+            ) : null}
+          </>
+        )}
+      </>
     </Container>
   );
 };

@@ -3,7 +3,24 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
+import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
+
+const SEE_RECIPES_QUERY = gql`
+  query seeRecipes($lastId: Int) {
+    seeRecipes(lastId: $lastId) {
+      id
+      user {
+        ...UserFragment
+      }
+      cookName
+      payload
+      videoLink
+      file
+    }
+  }
+  ${USER_FRAGMENT}
+`;
 
 const DELETE_RECIPE_MUTATION = gql`
   mutation deleteRecipe($id: Int!) {
@@ -49,7 +66,13 @@ const Items = styled.div`
 export const EditBtn = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [deleteRecipe, { loading }] = useMutation(DELETE_RECIPE_MUTATION);
+  const [deleteRecipe, { loading }] = useMutation(DELETE_RECIPE_MUTATION, {
+    refetchQueries: [
+      {
+        query: SEE_RECIPES_QUERY,
+      },
+    ],
+  });
 
   const handleDelete = () => {
     if (window.confirm("삭제 할래요?🤔")) {

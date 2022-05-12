@@ -6,5 +6,5 @@ export const routes = {
   search: "/search",
   hashtag: "/hashtag/:hashtag",
   createRecipe: "/create-recipe",
-  editRecipe: "/edit-recipe",
+  editRecipe: "/edit-recipe/:id",
 };

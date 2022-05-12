@@ -68,7 +68,7 @@ export const EditBtn = () => {
   return (
     <>
       <Items>
-        <Link to={routes.editRecipe}>
+        <Link to={`/edit-recipe/${id}`}>
           <FontAwesomeIcon icon={faEdit} />
         </Link>
       </Items>

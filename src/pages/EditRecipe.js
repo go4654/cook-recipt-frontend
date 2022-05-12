@@ -112,6 +112,14 @@ export const EditRecipe = () => {
 
   const [editRecipe, { loading }] = useMutation(Edit_RECIPE_MUTATION, {
     onCompleted,
+    refetchQueries: [
+      {
+        query: SEE_COOK_QUERY,
+        variables: {
+          id: +recipeId,
+        },
+      },
+    ],
   });
 
   const onSubmit = () => {

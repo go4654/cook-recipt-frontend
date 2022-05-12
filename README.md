@@ -17,7 +17,7 @@
 - [x] SearchRecipe
 - [x] DeleteRecipe
 - [x] CreateRecipe -> Hashtag change
-- [ ] EditRecipe
+- [x] EditRecipe
 
 # Hashtag
 

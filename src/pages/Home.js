@@ -6,7 +6,7 @@ import { USER_FRAGMENT } from "../fragment";
 import { Container } from "../components/Container";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-const SEE_RECIPES_MUTATION = gql`
+const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
     seeRecipes(lastId: $lastId) {
       id
@@ -37,7 +37,7 @@ const ConWrap = styled.div`
 `;
 
 export const Home = () => {
-  const { data, fetchMore, loading } = useQuery(SEE_RECIPES_MUTATION);
+  const { data, fetchMore, loading } = useQuery(SEE_RECIPES_QUERY);
 
   return (
     <Container>
@@ -65,7 +65,9 @@ export const Home = () => {
                   <SeeRecipes recipe={data?.seeRecipes} />
                 </ConWrap>
               </InfiniteScroll>
-            ) : null}
+            ) : (
+              window.location.reload()
+            )}
           </>
         )}
       </>

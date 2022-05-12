@@ -7,7 +7,24 @@ import { ErrorMessage } from "../components/auth/ErrorMessage";
 import { Input } from "../components/auth/Input";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
+import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
+
+const SEE_RECIPES_QUERY = gql`
+  query seeRecipes($lastId: Int) {
+    seeRecipes(lastId: $lastId) {
+      id
+      user {
+        ...UserFragment
+      }
+      cookName
+      payload
+      videoLink
+      file
+    }
+  }
+  ${USER_FRAGMENT}
+`;
 
 const CREATE_RECIPE_MUTATION = gql`
   mutation createRecipe(
@@ -26,6 +43,9 @@ const CREATE_RECIPE_MUTATION = gql`
     ) {
       ok
       error
+      recipe {
+        id
+      }
     }
   }
 `;
@@ -80,8 +100,37 @@ export const CreateRecipe = () => {
     }
   };
 
+  // const createRecipeUpdate = (cache, result) => {
+  //   const {
+  //     data: {
+  //       createRecipe: {
+  //         ok,
+  //         error,
+  //         recipe: { id },
+  //       },
+  //     },
+  //   } = result;
+
+  //   if (error) {
+  //     return setError("result", {
+  //       message: error,
+  //     });
+  //   }
+
+  //   if (ok && userData?.me) {
+
+  //     navigate(routes.home);
+  //   }
+  // };
+
   const [createRecipe, { loading }] = useMutation(CREATE_RECIPE_MUTATION, {
     onCompleted,
+    // update: createRecipeUpdate,
+    refetchQueries: [
+      {
+        query: SEE_RECIPES_QUERY,
+      },
+    ],
   });
 
   const onSubmit = () => {

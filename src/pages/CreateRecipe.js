@@ -1,4 +1,5 @@
 import { gql, useMutation } from "@apollo/client";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
@@ -73,8 +74,11 @@ const TextArea = styled.textarea`
   }
 `;
 
+const ReviewImg = styled.img``;
+
 export const CreateRecipe = () => {
   const navigate = useNavigate();
+  const [filePreview, setFilePreview] = useState("");
 
   const {
     register,
@@ -82,6 +86,7 @@ export const CreateRecipe = () => {
     getValues,
     formState: { errors, isValid },
     setError,
+    watch,
   } = useForm({
     mode: "onChange",
   });
@@ -100,32 +105,8 @@ export const CreateRecipe = () => {
     }
   };
 
-  // const createRecipeUpdate = (cache, result) => {
-  //   const {
-  //     data: {
-  //       createRecipe: {
-  //         ok,
-  //         error,
-  //         recipe: { id },
-  //       },
-  //     },
-  //   } = result;
-
-  //   if (error) {
-  //     return setError("result", {
-  //       message: error,
-  //     });
-  //   }
-
-  //   if (ok && userData?.me) {
-
-  //     navigate(routes.home);
-  //   }
-  // };
-
   const [createRecipe, { loading }] = useMutation(CREATE_RECIPE_MUTATION, {
     onCompleted,
-    // update: createRecipeUpdate,
     refetchQueries: [
       {
         query: SEE_RECIPES_QUERY,
@@ -134,22 +115,34 @@ export const CreateRecipe = () => {
   });
 
   const onSubmit = () => {
+    if (loading) {
+      return;
+    }
     const { file, cookName, videoLink, payload, caption } = getValues();
-    createRecipe({
-      variables: {
-        file: "",
-        caption,
-        cookName,
-        videoLink,
-        payload,
-      },
-    });
+
+    // createRecipe({
+    //   variables: {
+    //     file: "",
+    //     caption,
+    //     cookName,
+    //     videoLink,
+    //     payload,
+    //   },
+    // });
   };
+
+  const cookImg = watch("file");
+  useEffect(() => {
+    if (cookImg && cookImg.length > 0) {
+      const file = cookImg[0];
+      setFilePreview(URL.createObjectURL(file));
+    }
+  }, [cookImg]);
 
   return (
     <Container>
       <Title title={"레시피를 등록해 보아요!"} />
-
+      <ReviewImg src={filePreview} />
       <ConWrap>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputFile

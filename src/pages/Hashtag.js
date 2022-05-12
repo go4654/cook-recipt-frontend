@@ -1,9 +1,11 @@
 import { gql, useQuery } from "@apollo/client";
-import { Link, useParams } from "react-router-dom";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
 import { Loading } from "../components/Loading";
+import { HashtagCon } from "../components/seeHashtag/HashtagCon";
 import { NO_IMG_URL } from "../constants/constants";
 
 const SEE_HASHTAG_QUERY = gql`
@@ -13,6 +15,7 @@ const SEE_HASHTAG_QUERY = gql`
       recipe {
         id
         payload
+        caption
         cookName
         file
         user {
@@ -48,10 +51,14 @@ const TitleBg = styled.div`
 
 const ConWrap = styled.div`
   margin-top: 50px;
+`;
+
+const Con = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   column-gap: 30px;
   row-gap: 40px;
+  overflow-y: hidden;
   @media screen and (max-width: 450px) {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 20px;
@@ -59,29 +66,14 @@ const ConWrap = styled.div`
   }
 `;
 
-const Con = styled.div``;
-
-const Bg = styled.div`
-  height: 200px;
-  border-radius: 20px;
-`;
-
-const Text = styled.p`
-  margin-top: 10px;
-  font-weight: 500;
-`;
-
 export const Hashtag = () => {
   const { hashtag } = useParams();
 
-  const { data, loading } = useQuery(SEE_HASHTAG_QUERY, {
+  const { data, fetchMore, loading } = useQuery(SEE_HASHTAG_QUERY, {
     variables: {
       hashtag: `#${hashtag}`,
-      page: 1,
     },
   });
-
-  console.log(data);
 
   const bgUrl = data?.seeHashtags[0]?.recipe[0]?.file;
 
@@ -103,22 +95,25 @@ export const Hashtag = () => {
               <Title title={`#${hashtag}`} />
             </TitleWrap>
             <ConWrap>
-              {data?.seeHashtags?.map((hashtag) => (
-                <Con key={hashtag.id}>
-                  <Link to={`/show-recipe/${hashtag.id}`}>
-                    <Bg
-                      style={{
-                        background: `url(${
-                          hashtag.recipe[0].file
-                            ? hashtag.recipe[0].file
-                            : NO_IMG_URL
-                        }) no-repeat center / cover`,
-                      }}
-                    />
-                    <Text>{hashtag?.recipe[0]?.cookName}</Text>
-                  </Link>
+              <InfiniteScroll
+                pageStart={0}
+                dataLength={data?.seeHashtags?.length}
+                next={() =>
+                  fetchMore({
+                    variables: {
+                      page: data?.seeHashtags?.length,
+                    },
+                  })
+                }
+                hasMore={true}
+                loader={loading ? <Loading /> : null}
+              >
+                <Con>
+                  {data?.seeHashtags?.map((hashtag) => (
+                    <HashtagCon key={hashtag.id} hashtag={hashtag} />
+                  ))}
                 </Con>
-              ))}
+              </InfiniteScroll>
             </ConWrap>
           </Container>
         </>

@@ -4,7 +4,7 @@ export const routes = {
   editProfile: "/edit-profile",
   detail: "/show-recipe/:id",
   search: "/search",
-  hashtag: "/hashtag/:hashtag/*",
+  hashtag: "/hashtag/:hashtag",
   createRecipe: "/create-recipe",
   editRecipe: "/edit-recipe",
 };

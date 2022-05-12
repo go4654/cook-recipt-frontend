@@ -13,12 +13,14 @@ const CREATE_RECIPE_MUTATION = gql`
   mutation createRecipe(
     $cookName: String!
     $payload: String!
+    $caption: String!
     $file: Upload
     $videoLink: String
   ) {
     createRecipe(
       cookName: $cookName
       payload: $payload
+      caption: $caption
       file: $file
       videoLink: $videoLink
     ) {
@@ -83,10 +85,11 @@ export const CreateRecipe = () => {
   });
 
   const onSubmit = () => {
-    const { file, cookName, videoLink, payload } = getValues();
+    const { file, cookName, videoLink, payload, caption } = getValues();
     createRecipe({
       variables: {
         file: "",
+        caption,
         cookName,
         videoLink,
         payload,
@@ -126,6 +129,17 @@ export const CreateRecipe = () => {
           ) : null}
 
           <Input
+            {...register("caption", {
+              required: false,
+            })}
+            type="text"
+            placeholder="해시태그를 작성해 주세요"
+          />
+          {errors?.caption?.message ? (
+            <ErrorMessage message={errors?.caption?.message} />
+          ) : null}
+
+          <Input
             {...register("videoLink", {
               required: false,
             })}
@@ -141,7 +155,7 @@ export const CreateRecipe = () => {
               required: "레시피 내용은 필수에요...",
             })}
             type="text"
-            placeholder="레시피와 해시태그를 적어주세요"
+            placeholder="레시피를 적어주세요"
           />
           {errors?.payload?.message ? (
             <ErrorMessage message={errors?.payload?.message} />

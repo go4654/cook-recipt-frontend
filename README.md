@@ -15,9 +15,9 @@
 - [x] SeeRecipes
 - [x] SeeCook
 - [x] SearchRecipe
-- [ ] CreateRecipe -> Hashtag change
+- [x] DeleteRecipe
+- [x] CreateRecipe -> Hashtag change
 - [ ] EditRecipe
-- [ ] DeleteRecipe
 
 # Hashtag
 
@@ -25,9 +25,9 @@
 
 # TODO
 
-- [ ] 404 Page
 - [x] Infinite Scroll
+- [x] 해시태그 인풋 따로 제작
+- [ ] 404 Page
 - [ ] Pagiation
 - [ ] 토큰 만료기간
-- [ ] 해시태그 인풋 따로 제작
 - [ ] 레시피 제작후 home 캐시처리

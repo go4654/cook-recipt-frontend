@@ -56,7 +56,12 @@ export const client = new ApolloClient({
           seeRecipes: {
             keyArgs: false,
             merge(existing = [], incoming = []) {
-              console.log(existing, incoming);
+              return [...existing, ...incoming];
+            },
+          },
+          seeHashtags: {
+            keyArgs: false,
+            merge(existing = [], incoming = []) {
               return [...existing, ...incoming];
             },
           },

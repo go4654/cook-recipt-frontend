@@ -16,6 +16,7 @@ const SEE_COOK_QUERY = gql`
       }
       cookName
       payload
+      caption
       videoLink
       file
       hashtags {
@@ -48,7 +49,7 @@ const RecipeTitle = styled.h4`
   font-weight: 500;
 `;
 
-const Payload = styled.div`
+const Catpion = styled.div`
   margin-top: 20px;
   font-size: 18px;
   line-height: 1.6rem;
@@ -58,6 +59,12 @@ const Payload = styled.div`
       text-decoration: underline;
     }
   }
+`;
+
+const Payload = styled.pre`
+  margin-top: 20px;
+  font-size: 18px;
+  line-height: 1.6rem;
 `;
 
 const YoutubeLink = styled.div`
@@ -80,6 +87,8 @@ export const SeeCook = () => {
     },
   });
 
+  // console.log(data);
+
   return (
     <div>
       {loading ? (
@@ -92,8 +101,8 @@ export const SeeCook = () => {
 
             <ConWrap>
               <RecipeTitle>{data?.seeCook?.cookName}</RecipeTitle>
-              <Payload>
-                {data?.seeCook?.payload.split(" ").map((word, index) =>
+              <Catpion>
+                {data?.seeCook?.caption?.split(" ").map((word, index) =>
                   /#[ㄱ-ㅎ|ㅏ-ㅣ|가-힣|\w]+/.test(word) ? (
                     <Fragment key={index}>
                       <Link to={`/hashtag/${word.slice(1)}`}>{word}</Link>{" "}
@@ -102,7 +111,8 @@ export const SeeCook = () => {
                     <Fragment key={index}>{word} </Fragment>
                   )
                 )}
-              </Payload>
+              </Catpion>
+              <Payload>{data?.seeCook?.payload}</Payload>
               <YoutubeLink>
                 <span>유튜브 링크: </span>
                 <a href={data?.seeCook?.videoLink}>

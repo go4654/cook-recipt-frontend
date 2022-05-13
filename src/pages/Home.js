@@ -65,9 +65,7 @@ export const Home = () => {
                   <SeeRecipes recipe={data?.seeRecipes} />
                 </ConWrap>
               </InfiniteScroll>
-            ) : (
-              window.location.reload()
-            )}
+            ) : null}
           </>
         )}
       </>

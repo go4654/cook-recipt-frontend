@@ -79,6 +79,7 @@ const ReviewImg = styled.img``;
 export const CreateRecipe = () => {
   const navigate = useNavigate();
   const [filePreview, setFilePreview] = useState("");
+  const [recipeImg, setRecipeImg] = useState();
 
   const {
     register,
@@ -120,24 +121,46 @@ export const CreateRecipe = () => {
     }
     const { file, cookName, videoLink, payload, caption } = getValues();
 
-    // createRecipe({
-    //   variables: {
-    //     file: "",
-    //     caption,
-    //     cookName,
-    //     videoLink,
-    //     payload,
-    //   },
-    // });
+    if (file && file.length > 0) {
+      // const reader = new FileReader();
+      // console.log(reader.readAsDataURL(file[0]));
+      // console.log(filePreview);
+      // const cookImg = watch("file");
+      // console.log(cookImg[0]);
+
+      createRecipe({
+        variables: {
+          file: file[0],
+          caption,
+          cookName,
+          videoLink,
+          payload,
+        },
+      });
+    } else {
+      createRecipe({
+        variables: {
+          caption,
+          cookName,
+          videoLink,
+          payload,
+        },
+      });
+    }
   };
 
   const cookImg = watch("file");
   useEffect(() => {
     if (cookImg && cookImg.length > 0) {
       const file = cookImg[0];
+      setRecipeImg(file);
       setFilePreview(URL.createObjectURL(file));
     }
   }, [cookImg]);
+
+  // const onChangeHandler = (e) => {
+  //   console.log(e);
+  // };
 
   return (
     <Container>
@@ -146,10 +169,9 @@ export const CreateRecipe = () => {
       <ConWrap>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputFile
-            {...register("file", {
-              required: false,
-            })}
+            {...register("file")}
             type="file"
+            // onChange={onChangeHandler}
           />
           {errors?.file?.message ? (
             <ErrorMessage message={errors?.file?.message} />

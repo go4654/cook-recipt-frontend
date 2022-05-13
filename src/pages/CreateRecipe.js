@@ -115,22 +115,16 @@ export const CreateRecipe = () => {
     ],
   });
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     if (loading) {
       return;
     }
     const { file, cookName, videoLink, payload, caption } = getValues();
 
     if (file && file.length > 0) {
-      // const reader = new FileReader();
-      // console.log(reader.readAsDataURL(file[0]));
-      // console.log(filePreview);
-      // const cookImg = watch("file");
-      // console.log(cookImg[0]);
-
-      createRecipe({
+      await createRecipe({
         variables: {
-          file: file[0],
+          file: recipeImg,
           caption,
           cookName,
           videoLink,
@@ -158,21 +152,13 @@ export const CreateRecipe = () => {
     }
   }, [cookImg]);
 
-  // const onChangeHandler = (e) => {
-  //   console.log(e);
-  // };
-
   return (
     <Container>
       <Title title={"레시피를 등록해 보아요!"} />
       <ReviewImg src={filePreview} />
       <ConWrap>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <InputFile
-            {...register("file")}
-            type="file"
-            // onChange={onChangeHandler}
-          />
+          <InputFile {...register("file")} type="file" accept="image/*" />
           {errors?.file?.message ? (
             <ErrorMessage message={errors?.file?.message} />
           ) : null}

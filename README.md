@@ -32,3 +32,5 @@
 - [ ] 404 Page
 - [ ] 토큰 만료기간
 - [ ] Helmet
+- [ ] Loading -> Logo design modify
+- [ ] scollTop

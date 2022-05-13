@@ -10,6 +10,7 @@ import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
 import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
+import imageCompression from "browser-image-compression";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -122,9 +123,16 @@ export const CreateRecipe = () => {
     const { file, cookName, videoLink, payload, caption } = getValues();
 
     if (file && file.length > 0) {
-      await createRecipe({
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1080,
+      };
+
+      const compressedFile = await imageCompression(recipeImg, options);
+
+      createRecipe({
         variables: {
-          file: recipeImg,
+          file: compressedFile,
           caption,
           cookName,
           videoLink,

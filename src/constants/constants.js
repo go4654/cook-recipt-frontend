@@ -1,5 +1,5 @@
 export const NO_IMG_URL =
-  "https://cook-recipe.s3.ap-northeast-2.amazonaws.com/photos/1_1652494085153_090E7024-88D5-4E3F-8632-5FF879815423.jpeg";
+  "https://cdn.pixabay.com/photo/2021/01/01/21/56/cooking-5880136_960_720.jpg";
 
 export const TOKEN = "authorization";
 export const DARK_MODE = "darkMode";

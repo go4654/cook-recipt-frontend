@@ -33,8 +33,8 @@
 - [x] 레시피 제작후 home 캐시처리
 - [x] 토큰 만료기간
 - [x] 404 Page
+- [x] scrollTop
+- [x] 레시피 스크롤 처리
+- [x] 유튜브 링크
 - [ ] Helmet
-- [ ] scrollTop
-- [ ] 유튜브 링크
 - [ ] Loading -> Logo design modify
-- [ ] 레시피 스크롤 처리

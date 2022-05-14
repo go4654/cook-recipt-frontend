@@ -65,6 +65,7 @@ const Payload = styled.pre`
   margin-top: 20px;
   font-size: 18px;
   line-height: 1.6rem;
+  white-space: pre-wrap;
 `;
 
 const YoutubeLink = styled.div`

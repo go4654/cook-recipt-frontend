@@ -2,7 +2,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useForm } from "react-hook-form";
 import { useLocation, useNavigate } from "react-router-dom";
 import { loginUser } from "../apollo";
-import { BottomWrap } from "../components/auth/BottomWrap";
+// import { BottomWrap } from "../components/auth/BottomWrap";
 import { Button } from "../components/auth/Button";
 import { ErrorMessage } from "../components/auth/ErrorMessage";
 import { Form } from "../components/auth/Form";
@@ -126,11 +126,11 @@ export const Login = () => {
           ) : null}
         </Form>
 
-        <BottomWrap
+        {/* <BottomWrap
           text="아이디가 없으신가요?"
           link={routes.signup}
           linkText="회원가입"
-        />
+        /> */}
       </LoginWrap>
     </Wrap>
   );

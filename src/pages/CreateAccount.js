@@ -65,9 +65,9 @@ export const Signup = () => {
     }
   };
 
-  const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
-    onCompleted,
-  });
+  // const [createAccount, { loading }] = useMutation(CREATE_ACCOUNT_MUTATION, {
+  //   onCompleted,
+  // });
 
   const onSubmit = () => {
     if (loading) {

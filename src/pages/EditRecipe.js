@@ -123,7 +123,7 @@ export const EditRecipe = () => {
   });
 
   const onSubmit = () => {
-    const { file, cookName, videoLink, payload, caption } = getValues();
+    const { cookName, videoLink, payload, caption } = getValues();
     editRecipe({
       variables: {
         id: +recipeId,

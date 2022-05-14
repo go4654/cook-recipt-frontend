@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, makeVar } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import createUploadLink from "apollo-upload-client/public/createUploadLink";
 import { DARK_MODE, TOKEN } from "./constants/constants";
+import { onError } from "@apollo/client/link/error";
 
 export const loggedInVar = makeVar(Boolean(localStorage.getItem(TOKEN)));
 
@@ -47,8 +48,17 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const onErrorLink = onError((graphqlErrors, networkError) => {
+  if (graphqlErrors) {
+    logoutUser();
+  }
+  if (networkError) {
+    console.log("network Error");
+  }
+});
+
 export const client = new ApolloClient({
-  link: authLink.concat(uploadLink),
+  link: authLink.concat(onErrorLink).concat(uploadLink),
   cache: new InMemoryCache({
     typePolicies: {
       Query: {

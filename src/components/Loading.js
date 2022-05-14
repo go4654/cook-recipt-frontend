@@ -16,12 +16,17 @@ const Wrap = styled.div`
 `;
 
 const Loader = styled.div`
-  width: 50%;
+  max-width: 200px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   img {
     margin-bottom: 20px;
+  }
+  @media screen and (max-width: 500px) {
+    max-width: 50%;
+    width: 100%;
   }
 `;
 

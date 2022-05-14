@@ -8,10 +8,12 @@ import { ErrorMessage } from "../components/auth/ErrorMessage";
 import { Form } from "../components/auth/Form";
 import { Input } from "../components/auth/Input";
 import { LoginWrap } from "../components/auth/LoginWrap";
+import { Logo } from "../components/auth/Logo";
 import { Title } from "../components/auth/Title";
 import { WelcomeMessage } from "../components/auth/WelcomeMessage";
 import { Wrap } from "../components/auth/Wrap";
 import { PageTitle } from "../components/PageTitle";
+import { LOGO_URL } from "../constants/constants";
 import { routes } from "../routes";
 
 const LOGIN_MUTATION = gql`
@@ -74,9 +76,11 @@ export const Login = () => {
 
   return (
     <Wrap>
+      <Logo>
+        <img src={LOGO_URL} />
+      </Logo>
       <PageTitle title="로그인" />
       <LoginWrap>
-        <Title title="로그인" />
         {location?.state?.message ? (
           <WelcomeMessage message={location?.state?.message} />
         ) : (

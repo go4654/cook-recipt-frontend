@@ -9,7 +9,6 @@ import { Form } from "../components/auth/Form";
 import { Input } from "../components/auth/Input";
 import { LoginWrap } from "../components/auth/LoginWrap";
 import { Logo } from "../components/auth/Logo";
-import { Title } from "../components/auth/Title";
 import { WelcomeMessage } from "../components/auth/WelcomeMessage";
 import { Wrap } from "../components/auth/Wrap";
 import { PageTitle } from "../components/PageTitle";
@@ -77,7 +76,7 @@ export const Login = () => {
   return (
     <Wrap>
       <Logo>
-        <img src={LOGO_URL} />
+        <img src={LOGO_URL} alt="logo" />
       </Logo>
       <PageTitle title="로그인" />
       <LoginWrap>

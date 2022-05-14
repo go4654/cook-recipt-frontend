@@ -73,7 +73,7 @@ export const Header = () => {
     <SHeader pos={fix}>
       <Logo>
         <Link to={routes.home}>
-          <img src={LOGO_URL} />
+          <img src={LOGO_URL} alt="logo" />
         </Link>
       </Logo>
       <MenuWrap>

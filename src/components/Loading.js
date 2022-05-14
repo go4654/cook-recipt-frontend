@@ -34,7 +34,7 @@ export const Loading = () => {
   return (
     <Wrap>
       <Loader>
-        <img src={LOGO_URL} />
+        <img src={LOGO_URL} alt="logo" />
         <ThreeDots color="orange" />
       </Loader>
     </Wrap>

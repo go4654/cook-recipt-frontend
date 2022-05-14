@@ -33,16 +33,16 @@ export const offDarkMode = () => {
 //   uri: "http://192.168.0.10:4000/graphql",
 // });
 
-// const uploadLink = createUploadLink({
-//   uri:
-//     process.env.NODE_ENV === "production"
-//       ? "https://cook-recipe-backend.herokuapp.com/graphql"
-//       : "http://192.168.0.10:4000/graphql",
-// });
-
 const uploadLink = createUploadLink({
-  uri: "http://192.168.0.10:4000/graphql",
+  uri:
+    process.env.NODE_ENV === "production"
+      ? "https://cook-recipe-backend.herokuapp.com/graphql"
+      : "http://192.168.0.10:4000/graphql",
 });
+
+// const uploadLink = createUploadLink({
+//   uri: "http://192.168.0.10:4000/graphql",
+// });
 
 const authLink = setContext((_, { headers }) => {
   return {

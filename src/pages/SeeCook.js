@@ -64,8 +64,8 @@ const Catpion = styled.div`
 
 const Payload = styled.pre`
   margin-top: 20px;
-  font-size: 18px;
-  line-height: 1.6rem;
+  font-size: 20px;
+  line-height: 1.8rem;
   white-space: pre-wrap;
 `;
 

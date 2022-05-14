@@ -67,7 +67,9 @@ const TextArea = styled.textarea`
   all: unset;
   width: 100%;
   height: 300px;
+  line-height: 1.5rem;
   padding: 15px;
+  font-size: 18px;
   box-sizing: border-box;
   border: 1px solid ${(props) => props.theme.borderColor};
   background-color: ${(props) => props.theme.inputBg};

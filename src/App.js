@@ -6,7 +6,7 @@ import { darkModeVar, loggedInVar } from "./apollo";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { NotFound } from "./pages/NotFound";
-import { Signup } from "./pages/Signup";
+import { Signup } from "./pages/SignUp";
 import { routes } from "./routes";
 import { darkTheme, GlobalStyled, lightTheme } from "./styles/style";
 import { client } from "./apollo";

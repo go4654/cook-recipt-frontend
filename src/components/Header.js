@@ -11,6 +11,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { darkModeVar, offDarkMode, onDarkMode } from "../apollo";
+import { LOGO_URL } from "../constants/constants";
 import { routes } from "../routes";
 
 const SHeader = styled.header`
@@ -34,11 +35,13 @@ const SHeader = styled.header`
 `;
 
 const Logo = styled.div`
-  font-size: 20px;
+  /* font-size: 20px;
   font-weight: 700;
-  color: ${(props) => props.theme.mainColor};
+  color: ${(props) => props.theme.mainColor}; */
+  max-width: 65px;
+  width: 100%;
   @media screen and (max-width: 430px) {
-    font-size: 16px;
+    max-width: 55px;
   }
 `;
 
@@ -69,7 +72,9 @@ export const Header = () => {
   return (
     <SHeader pos={fix}>
       <Logo>
-        <Link to={routes.home}>COOK RECIPE</Link>
+        <Link to={routes.home}>
+          <img src={LOGO_URL} />
+        </Link>
       </Logo>
       <MenuWrap>
         <Menu>

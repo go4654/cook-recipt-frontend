@@ -54,13 +54,13 @@ export const Home = () => {
 
   return (
     <Container>
-      <PageTitle title={"Home"} />
-      <Title>레시피를 확인해 보아요!</Title>
       <>
+        <PageTitle title={"Home"} />
         {loading ? (
           <Loading />
         ) : (
           <>
+            <Title>레시피를 확인해 보아요!</Title>
             {data?.seeRecipes ? (
               <InfiniteScroll
                 pageStart={0}

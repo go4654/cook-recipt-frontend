@@ -36,5 +36,5 @@
 - [x] scrollTop
 - [x] 레시피 스크롤 처리
 - [x] 유튜브 링크
-- [ ] Helmet
+- [x] Helmet
 - [ ] Loading -> Logo design modify

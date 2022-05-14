@@ -11,8 +11,9 @@ import { Container } from "../components/Container";
 import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
 import imageCompression from "browser-image-compression";
-import { scrollTop } from "../components/ScrollTop";
 import { PageTitle } from "../components/PageTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faImage } from "@fortawesome/free-solid-svg-icons";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -58,7 +59,9 @@ const ConWrap = styled.div``;
 
 const Form = styled.form``;
 
-const InputFile = styled.input``;
+const InputFile = styled.input`
+  display: none;
+`;
 
 const TextArea = styled.textarea`
   all: unset;
@@ -79,12 +82,45 @@ const TextArea = styled.textarea`
 
 const ReviewImg = styled.img``;
 
+const Label = styled.label`
+  height: 200px;
+  border: 5px dashed ${(props) => props.theme.mainColor};
+  opacity: 0.7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  svg {
+    font-size: 50px;
+    color: ${(props) => props.theme.mainColor};
+    margin-bottom: 15px;
+  }
+  span {
+    font-size: 18px;
+    font-weight: 700;
+    color: ${(props) => props.theme.mainColor};
+  }
+  margin-bottom: 40px;
+`;
+
+const Btn = styled.label`
+  width: 140px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 25px 0;
+  padding: 10px;
+  background-color: ${(props) => props.theme.mainColor};
+`;
+
 export const CreateRecipe = () => {
   const navigate = useNavigate();
   const [filePreview, setFilePreview] = useState("");
   const [recipeImg, setRecipeImg] = useState();
-
-  scrollTop();
 
   const {
     register,
@@ -171,10 +207,25 @@ export const CreateRecipe = () => {
     <Container>
       <PageTitle title="레시피 추가" />
       <Title title={"레시피를 등록해 보아요!"} />
-      <ReviewImg src={filePreview} />
+      {recipeImg ? (
+        <>
+          <ReviewImg src={filePreview} />
+          <Btn htmlFor="previewImg">다시 선택할래요?</Btn>
+        </>
+      ) : (
+        <Label htmlFor="previewImg">
+          <FontAwesomeIcon icon={faImage} />
+          <span>사진을 추가 해보아요!</span>
+        </Label>
+      )}
       <ConWrap>
         <Form onSubmit={handleSubmit(onSubmit)}>
-          <InputFile {...register("file")} type="file" accept="image/*" />
+          <InputFile
+            id="previewImg"
+            {...register("file")}
+            type="file"
+            accept="image/*"
+          />
           {errors?.file?.message ? (
             <ErrorMessage message={errors?.file?.message} />
           ) : null}

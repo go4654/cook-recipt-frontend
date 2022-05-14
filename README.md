@@ -1,5 +1,7 @@
 # Cook Recipe Frontend
 
+#### 레시피, 사진, 해시태그, 검색, 링크 업로드
+
 # User
 
 - [x] Router
@@ -32,5 +34,7 @@
 - [x] 토큰 만료기간
 - [x] 404 Page
 - [ ] Helmet
-- [ ] Loading -> Logo design modify
 - [ ] scrollTop
+- [ ] 유튜브 링크
+- [ ] Loading -> Logo design modify
+- [ ] 레시피 스크롤 처리

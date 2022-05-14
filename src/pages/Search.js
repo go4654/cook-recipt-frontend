@@ -80,6 +80,7 @@ export const Search = () => {
   });
 
   const { data, loading } = useQuery(SEARCH_RECIPE_QUERY, {
+    skip: !term,
     variables: {
       keyword: term,
       page: 1,
@@ -89,7 +90,6 @@ export const Search = () => {
   const onSubmit = () => {
     const { search } = getValues();
     setTerm(search);
-    // data?.searchRecipe === "" ? "레시피가 없어요.." : "";
   };
 
   return (

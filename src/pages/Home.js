@@ -5,6 +5,10 @@ import { SeeRecipes } from "../components/seeRecipes/SeeRecipes";
 import { USER_FRAGMENT } from "../fragment";
 import { Container } from "../components/Container";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useLocation, useNavigate } from "react-router-dom";
+import { scrollTop } from "../components/ScrollTop";
+import { routes } from "../routes";
+import { useEffect } from "react";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -37,7 +41,15 @@ const ConWrap = styled.div`
 `;
 
 export const Home = () => {
+  const { state } = useLocation();
+  const navigate = useNavigate();
   const { data, fetchMore, loading } = useQuery(SEE_RECIPES_QUERY);
+  useEffect(() => {
+    if (state?.message) {
+      scrollTop();
+      navigate(routes.home, { replace: true });
+    }
+  }, [state, navigate]);
 
   return (
     <Container>

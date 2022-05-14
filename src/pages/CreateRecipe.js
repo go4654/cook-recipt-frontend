@@ -11,6 +11,7 @@ import { Container } from "../components/Container";
 import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
 import imageCompression from "browser-image-compression";
+import { scrollTop } from "../components/ScrollTop";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -82,6 +83,8 @@ export const CreateRecipe = () => {
   const [filePreview, setFilePreview] = useState("");
   const [recipeImg, setRecipeImg] = useState();
 
+  scrollTop();
+
   const {
     register,
     handleSubmit,
@@ -103,7 +106,11 @@ export const CreateRecipe = () => {
         message: error,
       });
     } else {
-      navigate(routes.home);
+      navigate(routes.home, {
+        state: {
+          message: "create",
+        },
+      });
     }
   };
 
@@ -129,7 +136,6 @@ export const CreateRecipe = () => {
       };
 
       const compressedFile = await imageCompression(recipeImg, options);
-
       createRecipe({
         variables: {
           file: compressedFile,

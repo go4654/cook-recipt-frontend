@@ -8,6 +8,7 @@ import { ErrorMessage } from "../components/auth/ErrorMessage";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
 import { Loading } from "../components/Loading";
+import { PageTitle } from "../components/PageTitle";
 import { ConWrap } from "../components/serchRecipe/ConWrap";
 
 export const SEARCH_RECIPE_QUERY = gql`
@@ -94,6 +95,7 @@ export const Search = () => {
 
   return (
     <Container>
+      <PageTitle title="레시피 검색" />
       <Title title="레시피를 검색해 보아요" />
       <Form onSubmit={handleSubmit(onSubmit)}>
         <span>

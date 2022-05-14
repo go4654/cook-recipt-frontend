@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { Container } from "../components/Container";
 import { Loading } from "../components/Loading";
+import { PageTitle } from "../components/PageTitle";
 import { NO_IMG_URL } from "../constants/constants";
 import { HASHTAG_FRAGMENT, USER_FRAGMENT } from "../fragment";
 
@@ -88,10 +89,9 @@ export const SeeCook = () => {
     },
   });
 
-  // console.log(data);
-
   return (
     <div>
+      <PageTitle title="레시피 보기" />
       {loading ? (
         <Loading />
       ) : (

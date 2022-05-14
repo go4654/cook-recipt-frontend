@@ -12,6 +12,7 @@ import { USER_FRAGMENT } from "../fragment";
 import { routes } from "../routes";
 import imageCompression from "browser-image-compression";
 import { scrollTop } from "../components/ScrollTop";
+import { PageTitle } from "../components/PageTitle";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -168,6 +169,7 @@ export const CreateRecipe = () => {
 
   return (
     <Container>
+      <PageTitle title="레시피 추가" />
       <Title title={"레시피를 등록해 보아요!"} />
       <ReviewImg src={filePreview} />
       <ConWrap>

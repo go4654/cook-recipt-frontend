@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
+import { PageTitle } from "../components/PageTitle";
 import { routes } from "../routes";
 
 const Wrap = styled.div`
@@ -52,6 +53,7 @@ const Desc = styled.div`
 export const NotFound = () => {
   return (
     <Wrap>
+      <PageTitle title="Page not found" />
       <Icon>🤔</Icon>
       <Title>
         페이지를 찾을수 없거나 <br />

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
 import { Loading } from "../components/Loading";
+import { PageTitle } from "../components/PageTitle";
 import { HashtagCon } from "../components/seeHashtag/HashtagCon";
 import { NO_IMG_URL } from "../constants/constants";
 
@@ -79,6 +80,7 @@ export const Hashtag = () => {
 
   return (
     <>
+      <PageTitle title="해시태그" />
       {loading ? (
         <Loading />
       ) : (

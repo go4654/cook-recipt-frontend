@@ -10,6 +10,7 @@ import { Input } from "../components/auth/Input";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
 import { useUser } from "../components/hooks/useUser";
+import { PageTitle } from "../components/PageTitle";
 import { routes } from "../routes";
 
 const EDIT_PROFILE_MUTATION = gql`
@@ -130,6 +131,7 @@ export const EditProfile = () => {
 
   return (
     <Container>
+      <PageTitle title="프로필 수정" />
       <ConWrap>
         <TitleWrap>
           <Title title={`${userData?.me?.nickName}님 프로필을 수정할래요?`} />

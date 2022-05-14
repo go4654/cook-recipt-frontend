@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { scrollTop } from "../components/ScrollTop";
 import { routes } from "../routes";
 import { useEffect } from "react";
+import { PageTitle } from "../components/PageTitle";
 
 const SEE_RECIPES_QUERY = gql`
   query seeRecipes($lastId: Int) {
@@ -53,6 +54,7 @@ export const Home = () => {
 
   return (
     <Container>
+      <PageTitle title={"Home"} />
       <Title>레시피를 확인해 보아요!</Title>
       <>
         {loading ? (

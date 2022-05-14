@@ -8,6 +8,7 @@ import { ErrorMessage } from "../components/auth/ErrorMessage";
 import { Input } from "../components/auth/Input";
 import { Title } from "../components/auth/Title";
 import { Container } from "../components/Container";
+import { PageTitle } from "../components/PageTitle";
 import { NO_IMG_URL } from "../constants/constants";
 import { routes } from "../routes";
 
@@ -145,6 +146,7 @@ export const EditRecipe = () => {
 
   return (
     <Container>
+      <PageTitle title="레시피 수정" />
       <Title title={"레시피를 수정해볼까요?"} />
 
       <ConWrap>

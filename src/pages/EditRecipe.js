@@ -1,5 +1,5 @@
 import { gql, useMutation, useQuery } from "@apollo/client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -11,6 +11,7 @@ import { Container } from "../components/Container";
 import { PageTitle } from "../components/PageTitle";
 import { NO_IMG_URL } from "../constants/constants";
 import { routes } from "../routes";
+import imageCompression from "browser-image-compression";
 
 const SEE_COOK_QUERY = gql`
   query seeCook($id: Int!) {
@@ -53,7 +54,11 @@ const ConWrap = styled.div``;
 
 const Form = styled.form``;
 
-const InputFile = styled.input``;
+const InputFile = styled.input`
+  display: none;
+`;
+
+const ReviewImg = styled.img``;
 
 const TextArea = styled.textarea`
   all: unset;
@@ -73,12 +78,28 @@ const TextArea = styled.textarea`
 `;
 
 const Img = styled.div`
-  height: 300px;
+  width: 100%;
+  height: 200px;
+`;
+
+const Btn = styled.label`
+  width: 140px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 25px 0;
+  padding: 10px;
+  background-color: ${(props) => props.theme.mainColor};
 `;
 
 export const EditRecipe = () => {
   const { id: recipeId } = useParams();
   const navigate = useNavigate();
+  const [filePreview, setFilePreview] = useState("");
+  const [recipeImg, setRecipeImg] = useState();
 
   const {
     register,
@@ -87,6 +108,7 @@ export const EditRecipe = () => {
     setValue,
     formState: { errors, isValid },
     setError,
+    watch,
   } = useForm({
     mode: "onChange",
   });
@@ -123,46 +145,82 @@ export const EditRecipe = () => {
     ],
   });
 
-  const onSubmit = () => {
-    const { cookName, videoLink, payload, caption } = getValues();
-    editRecipe({
-      variables: {
-        id: +recipeId,
-        file: "",
-        caption,
-        cookName,
-        videoLink,
-        payload,
-      },
-    });
+  const onSubmit = async () => {
+    const { file, cookName, videoLink, payload, caption } = getValues();
+
+    if (file && file.length > 0) {
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1080,
+      };
+
+      const compressedFile = await imageCompression(recipeImg, options);
+      editRecipe({
+        variables: {
+          id: +recipeId,
+          file: compressedFile,
+          caption,
+          cookName,
+          videoLink,
+          payload,
+        },
+      });
+    } else {
+      editRecipe({
+        variables: {
+          id: +recipeId,
+          file: "",
+          caption,
+          cookName,
+          videoLink,
+          payload,
+        },
+      });
+    }
   };
 
+  const cookImg = watch("file");
   useEffect(() => {
+    if (cookImg && cookImg.length > 0) {
+      const file = cookImg[0];
+      setRecipeImg(file);
+      setFilePreview(URL.createObjectURL(file));
+    }
     setValue("cookName", data?.seeCook?.cookName);
     setValue("caption", data?.seeCook?.caption);
     setValue("videoLink", data?.seeCook?.videoLink);
     setValue("payload", data?.seeCook?.payload);
-  }, [data, setValue]);
-
+  }, [data, setValue, cookImg]);
   return (
     <Container>
       <PageTitle title="레시피 수정" />
       <Title title={"레시피를 수정해볼까요?"} />
+      {recipeImg ? (
+        <>
+          <ReviewImg src={filePreview} />
+          <Btn htmlFor="previewImg">다시 선택할래요?</Btn>
+        </>
+      ) : (
+        <>
+          <Img
+            style={{
+              background: `url(${
+                data?.seeCook?.file ? data?.seeCook?.file : NO_IMG_URL
+              }) no-repeat center / cover`,
+            }}
+          />
+          <Btn htmlFor="previewImg">사진을 변경 할래요?</Btn>
+        </>
+      )}
 
       <ConWrap>
-        <Img
-          style={{
-            background: `url(${
-              data?.seeCook?.file ? data?.seeCook?.file : NO_IMG_URL
-            }) no-repeat center / cover`,
-          }}
-        />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputFile
             {...register("file", {
               required: false,
             })}
             type="file"
+            id="previewImg"
           />
           {errors?.file?.message ? (
             <ErrorMessage message={errors?.file?.message} />

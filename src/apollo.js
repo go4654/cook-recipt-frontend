@@ -57,7 +57,7 @@ const authLink = setContext((_, { headers }) => {
 
 const onErrorLink = onError((graphqlErrors, networkError) => {
   if (graphqlErrors) {
-    // logoutUser();
+    logoutUser();
     console.log(graphqlErrors);
   }
   if (networkError) {

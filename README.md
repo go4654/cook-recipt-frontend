@@ -37,4 +37,5 @@
 - [x] 레시피 스크롤 처리
 - [x] 유튜브 링크
 - [x] Helmet
-- [ ] Loading -> Logo design modify
+- [x] Loading -> Logo design modify
+- [ ] 재료, 레시피 분리하여 작업

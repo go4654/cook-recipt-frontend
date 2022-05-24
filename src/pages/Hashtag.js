@@ -1,4 +1,5 @@
 import { gql, useQuery } from "@apollo/client";
+import { useEffect } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
@@ -52,6 +53,7 @@ const TitleBg = styled.div`
 
 const ConWrap = styled.div`
   margin-top: 50px;
+  padding-bottom: 50px;
 `;
 
 const Con = styled.div`
@@ -70,11 +72,15 @@ const Con = styled.div`
 export const Hashtag = () => {
   const { hashtag } = useParams();
 
-  const { data, fetchMore, loading } = useQuery(SEE_HASHTAG_QUERY, {
+  const { data, fetchMore, refetch, loading } = useQuery(SEE_HASHTAG_QUERY, {
     variables: {
       hashtag: `#${hashtag}`,
     },
   });
+
+  useEffect(() => {
+    refetch();
+  }, [hashtag, refetch]);
 
   const bgUrl = data?.seeHashtags[0]?.recipe[0]?.file;
 

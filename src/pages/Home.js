@@ -44,13 +44,14 @@ const ConWrap = styled.div`
 export const Home = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
-  const { data, fetchMore, loading } = useQuery(SEE_RECIPES_QUERY);
+  const { data, fetchMore, refetch, loading } = useQuery(SEE_RECIPES_QUERY);
   useEffect(() => {
     if (state?.message) {
       scrollTop();
       navigate(routes.home, { replace: true });
     }
-  }, [state, navigate]);
+    refetch();
+  }, [state, navigate, refetch]);
 
   return (
     <Container>
